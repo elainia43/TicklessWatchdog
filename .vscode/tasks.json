@@ -1,0 +1,64 @@
+{
+	"version": "2.0.0",
+	"options": {
+		"cwd": "${workspaceFolder}",
+		"env": {
+			"PATH":"${config:MAKE_HOME};${config:GCC_HOME}/bin;${config:QEMU_PATH};${config:OPENOCD_PATH};${env:PATH}"
+		}
+	},
+	"tasks": [
+		{
+			"label": "Build",
+			"type": "shell",
+			"command":["make all"],
+			"problemMatcher":"$gcc",
+			"isBackground": false,
+			"group":{
+				"kind": "build"
+			}
+		},
+		{
+			"label": "Clean",
+			"type": "shell",
+			"command":["make clean"],
+			"problemMatcher":"$gcc",
+			"group":"build"
+		},
+		{
+			"label": "Launch Qemu Run",
+			"type": "shell",
+			"command":["echo 'Starting QEMU'; make qemu-run"],
+			"group": "build"
+		},
+		{
+			"label": "Launch Qemu Debug",
+			"type": "shell",
+			"isBackground": true,
+			"command":["echo 'Starting QEMU'; make qemu-debug"],
+			"problemMatcher":{
+				"pattern":[
+					{
+						"regexp": ".",
+						"file": 1,
+						"location": 2,
+						"message": 3
+					},
+				],
+				"background": {
+					"activeOnStart": true,
+					"beginsPattern":".",
+					"endsPattern":"Starting QEMU"
+				}
+			},
+			"group": "build"
+		},
+		{
+			"label": "Build and Launch Qemu Debug",
+			"dependsOrder": "sequence",
+			"dependsOn":[
+				"Build",
+				"Launch Qemu Debug"
+			]
+		}
+	]
+}

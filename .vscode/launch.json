@@ -1,0 +1,58 @@
+{
+    "configurations": [
+        {
+            "name": "STM32F4-GDB-DEBUG(Qemu)",
+            "type": "cppdbg",
+            "targetArchitecture": "arm",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/${workspaceRootFolderName}.elf",
+            "args": [],
+            "stopAtEntry": true,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": true,
+            "MIMode": "gdb",
+            "miDebuggerPath": "${config:GCC_HOME}/bin/arm-none-eabi-gdb.exe",
+            "miDebuggerServerAddress": "localhost:1234",
+            "preLaunchTask": "Build and Launch Qemu Debug",
+            "filterStderr": false,
+            "filterStdout": false,
+            "logging": {
+                "moduleLoad": true,
+                "trace": true,
+                "engineLogging": true,
+                "programOutput": true,
+                "exceptions": true
+            },
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
+
+        {
+            "name": "STM32F4-CortexDebug (Qemu)",
+            "type": "cortex-debug",
+            "request": "launch",
+            "servertype": "qemu",
+            "cwd": "${workspaceRoot}",
+            "executable": "./build/${workspaceRootFolderName}.elf",
+            "cpu":"cortex-m4",
+            "machine": "STM32F4-Discovery",
+            "armToolchainPath":"${config:GCC_HOME}/bin",
+            "serverpath": "${config:QEMU_PATH}/qemu-system-gnuarmeclipse.exe",
+            "serverArgs": [
+                "-serial", "null",
+                "-serial", "mon:stdio"
+            ],
+            "svdPath": "${workspaceRoot}/STM32F407.svd",
+            "showDevDebugOutput":"parsed",
+            "preLaunchTask": "Build",
+            "breakAfterReset":true
+        }
+    ],
+    "version": "2.0.0"
+}

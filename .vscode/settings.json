@@ -1,0 +1,32 @@
+{
+    "TOOLS_HOME":"${workspaceFolder}/../tools",
+    "GCC_HOME":"${config:TOOLS_HOME}/arm-gnu-toolchain-13.2.Rel1-mingw-w64-i686-arm-none-eabi",
+    "MAKE_HOME":"${config:TOOLS_HOME}/make",
+    "QEMU_PATH":"${config:TOOLS_HOME}/xpack-qemu-arm-7.2.5-1/bin",
+    "OPENOCD_PATH":"${config:TOOLS_HOME}/xpack-openocd-0.12.0-3/bin",
+    "C_Cpp.default.includePath": [
+        "${workspaceFolder}/**",
+        "${config:GCC_HOME}/arm-none-eabi/include",
+        "${config:GCC_HOME}/lib/gcc/arm-none-eabi/13.2.1/include"
+    ],
+    "files.associations": {
+        "*.h": "c",
+        "*.c": "c",
+        "cstdint": "c",
+        "cstdio": "c",
+        "bit": "c",
+        "compare": "c",
+        "cstddef": "c",
+        "limits": "c",
+        "type_traits": "c",
+        "xutility": "c",
+        "new": "c",
+        "cstdlib": "c",
+        "typeinfo": "c",
+        "initializer_list": "c"
+    },
+    "terminal.integrated.env.windows": {
+        "Path": "${config:MAKE_HOME};${config:GCC_HOME}/bin;${config:QEMU_PATH};${config:OPENOCD_PATH};${env:PATH};"
+    },
+    "cmake.configureOnOpen": false
+}
