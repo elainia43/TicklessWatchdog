@@ -80,6 +80,22 @@ Lab10-tickless-watchdog.map
 
 ## QEMU 运行步骤
 
+现场演示推荐直接运行：
+
+```powershell
+.\demo-run.ps1
+```
+
+或者双击：
+
+```text
+demo-run.bat
+```
+
+脚本会自动配置工具链路径、执行 `make clean` 和 `make all`，然后停在启动 QEMU 前。给老师展示时按一次回车即可进入 QEMU 运行输出。
+
+手动运行命令如下：
+
 ```powershell
 & "D:\em2-labs\em2-lab-pack\tools\xpack-qemu-arm-7.2.5-1\bin\qemu-system-gnuarmeclipse.exe" `
   -M STM32F4-Discovery `
